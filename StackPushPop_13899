@@ -1,0 +1,66 @@
+#include <iostream>
+#define MAX 255
+using namespace std;
+//Ilham Kusuma Aryanda
+//A11.2021.13899
+
+int index = 0;
+
+//Deklarasi struct tumpukan
+struct Stack {
+	int top;
+	string data[MAX];
+}Tumpukan;
+
+void init(){
+	Tumpukan.top = -1;
+}
+
+bool isEmpty() {
+  return Tumpukan.top == -1;
+}
+
+bool isFull() {
+	return Tumpukan.top == MAX-1;
+}
+
+void printStack() {
+	if (isEmpty()) {
+		cout << "Tumpukan kosong";
+	}
+	else {
+    cout << "\nTumpukan : ";
+		for (int i = Tumpukan.top; i >= 0; i--)
+			cout << Tumpukan.data[i] << ((i == 0) ? "" : "");
+	}
+}
+
+int main() {
+	int i = 0;
+	string teks = "HA***L*OAP***A*KAB*A***R";
+
+	init();
+
+
+	for ( i = teks.length(); i >= 0; i--){
+    	Tumpukan.top++;
+    	// PUSH
+		Tumpukan.data[Tumpukan.top] = teks[i];
+	}
+
+	printStack();
+
+	cout<<"\nTumpukan Setelah dibersihkan : ";
+
+	int j;
+
+	for ( i = Tumpukan.top+1; i >= 0; i--){
+
+    	if ( Tumpukan.data[i] != "*") {
+			// POP
+    		Tumpukan.top--;
+    		cout<<Tumpukan.data[i];
+		}
+	}
+
+}
